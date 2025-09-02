@@ -166,8 +166,7 @@ public class ConsentManagementService : IConsentManagementService
 
 
             messageReceivedAt = DateTime.Now;
-            if (_serviceParams.Value.Online)
-            {
+            
                 HttpResponseMessage apiResponse = await _httpClient.PostAsync(url, content);
                 responsePayload = await apiResponse.Content.ReadAsStringAsync();
 
@@ -200,7 +199,7 @@ public class ConsentManagementService : IConsentManagementService
                     logger.Debug($"CorrelationId: {request.CorrelationId} || API Response: FAILED");
                 }
 
-            }
+            
             //else
             //{
             //    var resposne = OfflineFxQuoteUpdateResponse();
@@ -274,8 +273,7 @@ public class ConsentManagementService : IConsentManagementService
 
             responseTimestamp = DateTime.Now;
 
-            if (_serviceParams.Value.Online)
-            {
+            
                 HttpResponseMessage apiResponse = await _httpClient.PostAsync(url, content);
                 responsePayload = await apiResponse.Content.ReadAsStringAsync();
                 logger.Debug($"CorrelationId: {cbsRequest.CorrelationId}, IsSuccessStatusCode:{apiResponse.IsSuccessStatusCode}");
@@ -312,7 +310,7 @@ public class ConsentManagementService : IConsentManagementService
                     logger.Debug($"CorrelationId: {cbsRequest.CorrelationId} || API Response: FAILED");
                 }
 
-            }
+            
             //else
             //{
             //    var resposne = OfflineGetFxQuoteResponse();
@@ -392,8 +390,7 @@ public class ConsentManagementService : IConsentManagementService
 
             responseTimestamp = DateTime.Now;
 
-            if (_serviceParams.Value.Online)
-            {
+            
                 HttpResponseMessage apiResponse = await _httpClient.PostAsync(url, content);
                 responsePayload = await apiResponse.Content.ReadAsStringAsync();
                 logger.Debug($"CorrelationId: {cbsRequest.CorrelationId}, IsSuccessStatusCode:{apiResponse.IsSuccessStatusCode}");
@@ -430,7 +427,7 @@ public class ConsentManagementService : IConsentManagementService
                     logger.Debug($"CorrelationId: {cbsRequest.CorrelationId} || API Response: FAILED");
                 }
 
-            }
+            
             //else
             //{
             //    var resposne = OfflineGetFxQuoteResponse();

@@ -154,7 +154,7 @@ public class ConsentManagementController : ControllerBase
 
         var cbsRequest = new CbsPatchConsentRequest
         {
-            PaymentId = "",
+            PaymentId = consentId,
             ConsentId = consentId,
             CorrelationId = guid,
         };
@@ -168,7 +168,6 @@ public class ConsentManagementController : ControllerBase
 
         if (apiResult.Success)
         {
-           
             cbResponseDto.ConsentId = consentId;
             cbResponseDto.Status = "PROCESSED";
             await _sendpoint.PatchConsentResponse!.Send(cbResponseDto);
@@ -188,6 +187,7 @@ public class ConsentManagementController : ControllerBase
 
             await _sendpoint.AuditLog!.Send(log);
             return NoContent();
+
         }
         else
         {
@@ -232,8 +232,8 @@ public class ConsentManagementController : ControllerBase
 
         var cbsRequest = new CbsGetConsentRequest
         {
-            PaymentId = "",
-            ConsentId = "",
+            PaymentId = "123",
+            ConsentId = "123",
             CorrelationId = guid,
         };
 
