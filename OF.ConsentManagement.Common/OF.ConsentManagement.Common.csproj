@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+<ItemGroup>
+	<PackageReference Include="MassTransit.RabbitMQ" Version="8.4.1" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+		<PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="1.5.1" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
+		<PackageReference Include="NLog" Version="5.4.0" />
+  </ItemGroup>
+<ItemGroup>
+  <ProjectReference Include="..\OF.ConsentManagement.Model\OF.ConsentManagement.Model.csproj" />
+</ItemGroup>
+</Project>

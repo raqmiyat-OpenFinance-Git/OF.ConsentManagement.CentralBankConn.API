@@ -1,0 +1,6 @@
+@OF.ConsentManagement.CoreBankConn.API_HostAddress = http://localhost:5173
+
+GET {{OF.ConsentManagement.CoreBankConn.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,11 @@
+global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.Data.SqlClient;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Options;
+global using Newtonsoft.Json;
+global using NLog;
+global using OF.ConsentManagement.CoreBankConn.API.EFModel;
+global using System.Data;
+global using System.Net;
+global using System.Net.Security;

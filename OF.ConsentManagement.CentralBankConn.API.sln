@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OF.ConsentManagement.CentralBankConn.API", "OF.ConsentManagement.CentralBankConn.API\OF.ConsentManagement.CentralBankConn.API.csproj", "{C7EADC73-9049-4874-9D40-DCFD192BD239}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OF.ConsentManagement.Model", "OF.ConsentManagement.Model\OF.ConsentManagement.Model.csproj", "{ED4B1A5A-DB60-4655-8B54-02F9F1EEF776}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OF.ConsentManagement.CoreBankSimulatedAPI", "OF.ConsentManagement.CoreBankSimulatedAPI\OF.ConsentManagement.CoreBankSimulatedAPI.csproj", "{3CF5DAEA-2E7B-4131-801E-8A4EC093BEA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OF.ConsentManagement.CoreBankConn.API", "OF.ConsentManagement.CoreBankConn.API\OF.ConsentManagement.CoreBankConn.API.csproj", "{ACE49564-5DFD-4F7B-BB88-DFDCBBF45BED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OF.ConsentManagement.Common", "OF.ConsentManagement.Common\OF.ConsentManagement.Common.csproj", "{EF7D0482-8382-4EB2-B80E-39CF70CDC385}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OF.ConsentManagement.CentralBankReceiverWorker", "OF.ConsentManagement.CentralBankReceiverWorker\OF.ConsentManagement.CentralBankReceiverWorker.csproj", "{1B2E32F3-1CB5-4AAE-8F8D-8DE228338C0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7EADC73-9049-4874-9D40-DCFD192BD239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7EADC73-9049-4874-9D40-DCFD192BD239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7EADC73-9049-4874-9D40-DCFD192BD239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7EADC73-9049-4874-9D40-DCFD192BD239}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED4B1A5A-DB60-4655-8B54-02F9F1EEF776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED4B1A5A-DB60-4655-8B54-02F9F1EEF776}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED4B1A5A-DB60-4655-8B54-02F9F1EEF776}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED4B1A5A-DB60-4655-8B54-02F9F1EEF776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CF5DAEA-2E7B-4131-801E-8A4EC093BEA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CF5DAEA-2E7B-4131-801E-8A4EC093BEA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CF5DAEA-2E7B-4131-801E-8A4EC093BEA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CF5DAEA-2E7B-4131-801E-8A4EC093BEA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACE49564-5DFD-4F7B-BB88-DFDCBBF45BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACE49564-5DFD-4F7B-BB88-DFDCBBF45BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACE49564-5DFD-4F7B-BB88-DFDCBBF45BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACE49564-5DFD-4F7B-BB88-DFDCBBF45BED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF7D0482-8382-4EB2-B80E-39CF70CDC385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF7D0482-8382-4EB2-B80E-39CF70CDC385}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF7D0482-8382-4EB2-B80E-39CF70CDC385}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF7D0482-8382-4EB2-B80E-39CF70CDC385}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B2E32F3-1CB5-4AAE-8F8D-8DE228338C0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B2E32F3-1CB5-4AAE-8F8D-8DE228338C0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B2E32F3-1CB5-4AAE-8F8D-8DE228338C0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B2E32F3-1CB5-4AAE-8F8D-8DE228338C0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
