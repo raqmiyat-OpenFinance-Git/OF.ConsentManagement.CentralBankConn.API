@@ -9,11 +9,11 @@ public class ResourceLogApiLogger : BaseLogger
         if (siemEnabled)
         {
             LogManager.Setup().LoadConfigurationFromFile("NLog.config");
-            Log = LogManager.GetLogger("ConsentLoggerJson");
+            Log = LogManager.GetLogger("ResourceLogApiLoggerJson");
         }
         else
         {
-            Log = LogManager.GetLogger("CconsentLogger");
+            Log = LogManager.GetLogger("ResourceLogApiLogger");
         }
     }
 }
