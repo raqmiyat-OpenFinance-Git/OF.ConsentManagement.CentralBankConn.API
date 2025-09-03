@@ -9,3 +9,6 @@ global using OF.ConsentManagement.CoreBankConn.API.EFModel;
 global using System.Data;
 global using System.Net;
 global using System.Net.Security;
+global using OF.ConsentManagement.Common.NLog;
+global using OF.ConsentManagement.Model.Common;
+global using OF.ConsentManagement.Common.Helpers;

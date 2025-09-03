@@ -20,5 +20,12 @@ public class ConsentManagementUrl
     public string? UpdateConsent { get; set; }
     public string? GetConsents { get; set; }
     public string? GetConsentById { get; set; }
+    public string? RevokeConsentByConsentGroupId { get; set; }
+    public string? RevokeConsentById { get; set; }
+    public string? GetPaymentLog { get; set; }
+    public string? UpdatePaymentLogById { get; set; }
+    public string? RevokeConsentbyConsentGroupId { get; set; }
+    public string? RevokeConsentbyConsentId { get; set; }
+
 
 }
