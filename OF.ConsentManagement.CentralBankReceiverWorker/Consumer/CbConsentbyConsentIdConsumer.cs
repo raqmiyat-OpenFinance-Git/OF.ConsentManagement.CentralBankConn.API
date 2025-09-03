@@ -37,7 +37,8 @@ public class CbConsentbyConsentIdConsumer : IConsumer<CbsConsentRevokedDto>
     {
         try
         {
-
+            await _Service.RevokeConsentbyIdAsync(request, _logger.Log);
+            _logger.Info($"ConsentRequest Updated. ConsentGroupID = {request.ConsentGroupId}");
 
         }
         catch (Exception ex)

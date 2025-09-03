@@ -1,6 +1,4 @@
-﻿using ConsentManagerBackendReceiverWorker.IServices;
-using ConsentManagerBackendReceiverWorker.Mappers;
-using ConsentManagerCommon.NLog;
+﻿using ConsentManagerBackendReceiverWorker.Mappers;
 using ConsentMangerModel.Consent;
 
 namespace OF.ServiceInitiation.CentralBankReceiverWorker.Consumer;
