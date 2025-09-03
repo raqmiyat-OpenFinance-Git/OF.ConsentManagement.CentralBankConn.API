@@ -7,5 +7,8 @@ global using Newtonsoft.Json;
 global using NLog;
 global using OF.ConsentManagement.CentralBankReceiverWorker.EFModel;
 global using OF.ConsentManagement.CentralBankReceiverWorker.Services;
+global using OF.ConsentManagement.CentralBankReceiverWorker.IServices;
+global using ConsentManagerBackendReceiverWorker.IServices;
+global using ConsentManagerCommon.NLog;
 global using System.Data;
 

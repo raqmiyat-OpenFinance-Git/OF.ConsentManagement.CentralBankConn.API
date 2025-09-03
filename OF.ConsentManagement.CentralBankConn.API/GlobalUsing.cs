@@ -11,3 +11,5 @@ global using System.Data;
 global using System.Net;
 global using System.Net.Security;
 global using System.Text;
+global using OF.ConsentManagement.Common.NLog;
+global using OF.ConsentManagement.Model.Common;

@@ -9,4 +9,5 @@ public static class MessageTypeMappings
     public const string UpdateConsent = "UpdateConsent";
     public const string RetrieveAllConsent = "RetrieveAllConsent";
     public const string RetrieveConsent = "RetrieveConsent";
+    public const string GetPaymentLog = "GetPaymentLog";
 }

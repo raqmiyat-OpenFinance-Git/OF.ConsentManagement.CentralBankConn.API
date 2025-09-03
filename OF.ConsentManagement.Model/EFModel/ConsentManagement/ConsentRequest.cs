@@ -47,4 +47,6 @@ public class ConsentRequest
     public string RequestUpdatePayload { get; set; }
 
     public string CurrentStatus { get; set; }
+    public string Revokedby { get; set; }
+    public string RevokedPsuUserId { get; set; }
 }

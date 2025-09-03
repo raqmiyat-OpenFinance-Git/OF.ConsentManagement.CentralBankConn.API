@@ -23,6 +23,10 @@ namespace OF.ConsentManagement.CentralBankConn.API.Model
         public ISendEndpoint? PatchConsentResponse { get; set; }
         public ISendEndpoint? GetConsentAuditRequest { get; set; }
         public ISendEndpoint? GetConsentAuditResponse { get; set; }
+        public ISendEndpoint? GetPaymentLogRequest { get; set; }
+        public ISendEndpoint? GetPaymentLogResponse { get; set; }
+        public ISendEndpoint? RevokeConsentGroupIdRequest { get; set; }
+        public ISendEndpoint? RevokeConsentIdRequest { get; set; }
         
     }
 }
