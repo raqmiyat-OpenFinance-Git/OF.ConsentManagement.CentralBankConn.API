@@ -15,8 +15,8 @@ public class GetConsentDbContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         // Table mapping
-        modelBuilder.Entity<ConsentStatusHistory>().ToTable("ConsentStatusHistory");
-        modelBuilder.Entity<ConsentResponseHistory>().ToTable("ConsentResponseHistory");
+        modelBuilder.Entity<ConsentStatusHistory>().ToTable("LfiConsentStatusHistory");
+        modelBuilder.Entity<ConsentResponseHistory>().ToTable("LfiConsentResponseHistory");
 
         // Primary keys
         modelBuilder.Entity<ConsentStatusHistory>()

@@ -1,5 +1,6 @@
 ﻿namespace OF.ConsentManagement.Model.EFModel;
 
+[Table("LfiConsentResponse")]
 public class ConsentResponse
 {
     [Key]

@@ -1,7 +1,7 @@
 ﻿namespace OF.ConsentManagement.Model.EFModel;
 
 
-[Table("ConsentStatusHistory")]
+[Table("LfiConsentStatusHistory")]
 public class ConsentStatusHistory
 {
     [Key]
