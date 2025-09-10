@@ -319,7 +319,7 @@ public class ConsentManagementService : IConsentManagementService
             //    isSuccessful = true;
             //    postStatus = PostStatus.SUCCESS;
 
-            //    paymentEnquiry = CreateCoreBankEnquiry(MessageTypeMappings.PaymentEnquiry, cbsRequest.CorrelationId, cbsRequest.PaymentId, cbsRequest.OurReferenceNumber!, response.CoreBankReferenceId, response.Amount, response.Currency, Utils.GetStatus(postStatus), response.TransactionDate, response.ValueDate, response.PayerAccountNumber, response.PayerName, response.PayeeAccountNumber, response.PayeeName, response.BankResponseCode, response.BankResponseMessage, requestTimestamp, responseTimestamp, isSuccessful, "", requestPayload, responsePayload, logger);
+            //    paymentEnquiry = CreateCoreBankEnquiry(MessageTypeMappings.PaymentEnquiry, cbsRequest.CorrelationId, cbsRequest.PaymentId, cbsRequest.OurReferenceNumber!, response.CoreBankReferenceId, response.AmountResponse, response.Currency, Utils.GetStatus(postStatus), response.TransactionDate, response.ValueDate, response.PayerAccountNumber, response.PayerName, response.PayeeAccountNumber, response.PayeeName, response.BankResponseCode, response.BankResponseMessage, requestTimestamp, responseTimestamp, isSuccessful, "", requestPayload, responsePayload, logger);
             //}
 
 
@@ -436,7 +436,7 @@ public class ConsentManagementService : IConsentManagementService
             //    isSuccessful = true;
             //    postStatus = PostStatus.SUCCESS;
 
-            //    paymentEnquiry = CreateCoreBankEnquiry(MessageTypeMappings.PaymentEnquiry, cbsRequest.CorrelationId, cbsRequest.PaymentId, cbsRequest.OurReferenceNumber!, response.CoreBankReferenceId, response.Amount, response.Currency, Utils.GetStatus(postStatus), response.TransactionDate, response.ValueDate, response.PayerAccountNumber, response.PayerName, response.PayeeAccountNumber, response.PayeeName, response.BankResponseCode, response.BankResponseMessage, requestTimestamp, responseTimestamp, isSuccessful, "", requestPayload, responsePayload, logger);
+            //    paymentEnquiry = CreateCoreBankEnquiry(MessageTypeMappings.PaymentEnquiry, cbsRequest.CorrelationId, cbsRequest.PaymentId, cbsRequest.OurReferenceNumber!, response.CoreBankReferenceId, response.AmountResponse, response.Currency, Utils.GetStatus(postStatus), response.TransactionDate, response.ValueDate, response.PayerAccountNumber, response.PayerName, response.PayeeAccountNumber, response.PayeeName, response.BankResponseCode, response.BankResponseMessage, requestTimestamp, responseTimestamp, isSuccessful, "", requestPayload, responsePayload, logger);
             //}
 
 
@@ -494,7 +494,7 @@ public class ConsentManagementService : IConsentManagementService
                     Status             : {posting.Status}
                     Account            : {posting.AccountNumber}
                     DebitCredit        : {posting.TransactionType}
-                    Amount             : {posting.Amount}
+                    AmountResponse             : {posting.Amount}
                     CreatedOn          : {posting.CreatedOn:yyyy-MM-dd HH:mm:ss}
                     CreatedBy          : {posting.CreatedBy}
                     Module             : {posting.Module}
@@ -556,7 +556,7 @@ CorrelationId       : {enquiry.CorrelationId}
 PaymentId           : {enquiry.OfReferenceId}
 OurReferenceNumber  : {enquiry.OurReferenceNumber}
 CoreBankRefNbr      : {enquiry.CoreBankReferenceId}
-Amount              : {enquiry.Amount}
+AmountResponse              : {enquiry.Amount}
 Currency            : {enquiry.Currency}
 PaymentStatus       : {enquiry.Status}
 

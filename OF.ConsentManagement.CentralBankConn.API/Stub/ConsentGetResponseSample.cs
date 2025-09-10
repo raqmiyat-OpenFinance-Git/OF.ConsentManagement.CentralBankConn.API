@@ -13,7 +13,7 @@ using Webhook = OF.ConsentManagement.Model.CentralBank.Consent.GetResponse.Webho
 namespace OF.ConsentManagement.CentralBankConn.API.Stub;
 public static class ConsentGetResponseSample
 {
-    public static CbGetConsentResponse GetSampleResponse()
+    public static CbGetConsentResponse GetSampleResponse(string ConsentID)
     {
         return new CbGetConsentResponse
         {
@@ -35,7 +35,7 @@ public static class ConsentGetResponseSample
                     ConsentGroupId = "GRP-789",
                     RequestUrl = "https://api.centralbank.com/consent",
                     ConsentType = "ACCOUNT_ACCESS",
-                    Status = "ACTIVE",
+                    Status = "AUTHORIZED",
                     InteractionId = "INT-123",
                     UpdatedAt = DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
                     AuthorizationChannel = "WEB",
@@ -46,7 +46,7 @@ public static class ConsentGetResponseSample
                         Consent = new ConsentDetails
                         {
                             BaseConsentId = "BC-001",
-                            ConsentId = "CONSENT-12345",
+                            ConsentId = ConsentID,
                             ExpirationDateTime = DateTime.UtcNow.AddMonths(6),
                             TransactionFromDateTime = DateTime.UtcNow.AddMonths(-1),
                             TransactionToDateTime = DateTime.UtcNow,
@@ -56,8 +56,8 @@ public static class ConsentGetResponseSample
                             {
                                 TradingName = "FinCorp",
                                 LegalName = "FinCorp Ltd",
-                                IdentifierType = "LEI",
-                                Identifier = "LEI123456789"
+                                IdentifierType = "LFI",
+                                Identifier = "LFI123456789"
                             },
                             Permissions = new List<string> { "ReadAccounts", "ReadBalances" },
                             OpenFinanceBilling = new OpenFinanceBilling
@@ -166,7 +166,7 @@ public static class ConsentGetResponseSample
                         LastServiceInitiationAttempt = DateTime.UtcNow.AddDays(-1)
                     },
 
-                    AccountIds = new List<string> { "ACC-111", "ACC-222" },
+                    AccountIds = GetRandomUaeIbans(),
                     InsurancePolicyIds = new List<string> { "POLICY-001" },
                     ConnectToken = "TOKEN-123456",
 
@@ -196,5 +196,25 @@ public static class ConsentGetResponseSample
                 }
             }
         };
+    }
+
+    private static List<string> GetRandomUaeIbans()
+    {
+        var ibans = new List<string>
+            {
+                "AE070331234567890123456",
+                "AE100331987654321098765",
+                "AE560570123456789012345",
+                "AE290260123456789012345",
+                "AE450270987654321098765",
+                "AE030330111122223333444",
+                "AE990400987654321012345",
+                "AE760290123450987654321",
+                "AE220331555566667777888",
+                "AE880360999988887777666"
+            };
+
+        var random = new Random();
+        return ibans.OrderBy(x => random.Next()).Take(2).ToList();
     }
 }

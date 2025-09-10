@@ -30,7 +30,7 @@ public class ConsentManagementController : ControllerBase
     private readonly SendPointInitialize _sendpoint;
     private readonly HttpClient _client;
 
-    public ConsentManagementController(IConsentManagementService service,IOptions<ServiceParams> serviceParams, ConsentLogger logger, SendPointInitialize sendpoint, IOptions<CoreBankApis> coreBankApis, HttpClient client)
+    public ConsentManagementController(IConsentManagementService service, IOptions<ServiceParams> serviceParams, ConsentLogger logger, SendPointInitialize sendpoint, IOptions<CoreBankApis> coreBankApis, HttpClient client)
     {
         _serviceParams = serviceParams;
         _consentservice = service;
@@ -39,7 +39,7 @@ public class ConsentManagementController : ControllerBase
         _sendpoint = sendpoint;
         _client = client;
     }
-    
+
     [HttpPost]
     [Route("/consents")]
     [ProducesResponseType(typeof(CbPostConsentResponse), StatusCodes.Status200OK)]
@@ -246,10 +246,10 @@ public class ConsentManagementController : ControllerBase
 
         if (apiResult.Success)
         {
-            var cbResponse = ConsentGetResponseSample.GetSampleResponse();
+            var cbResponse = ConsentGetResponseSample.GetSampleResponse(cbsRequest.ConsentId);
             cbResponseDto.cbGetConsentResponse = cbResponse;
             cbResponseDto.Status = "Accepted";
-            
+
             await _sendpoint.GetConsentResponse!.Send(cbResponseDto);
 
             var response = await GetResponseObject(cbResponse);
@@ -281,7 +281,7 @@ public class ConsentManagementController : ControllerBase
         }
     }
 
-    
+
     [HttpGet("/consents/{consentId}")]
     public async Task<IActionResult> GetConsentById(string consentId)
     {
@@ -316,16 +316,56 @@ public class ConsentManagementController : ControllerBase
             CorrelationId = guid,
         };
 
-        var apiResult = await _consentservice.GetConsentByIdFromCoreBankAsync(cbsRequest, _logger.Log);
-
-        if (apiResult == null)
-            return NotFound(new ErrorResponse { errorCode = "404", errorMessage = "Payment data not found." });
-
-        var cbResponseDto = new CbGetConsentResponseDto { CorrelationId = guid };
-
-        if (apiResult.Success)
+        if (_serviceParams.Value.Online)
         {
-            var cbResponse = ConsentGetResponseSample.GetSampleResponse();
+            var apiResult = await _consentservice.GetConsentByIdFromCoreBankAsync(cbsRequest, _logger.Log);
+
+            if (apiResult == null)
+                return NotFound(new ErrorResponse { errorCode = "404", errorMessage = "Payment data not found." });
+
+            var cbResponseDto = new CbGetConsentResponseDto { CorrelationId = guid };
+
+            if (apiResult.Success)
+            {
+                var cbResponse = ConsentGetResponseSample.GetSampleResponse(consentId);
+                cbResponseDto.cbGetConsentResponse = cbResponse;
+                cbResponseDto.Status = "Accepted";
+
+                await _sendpoint.GetConsentResponse!.Send(cbResponseDto);
+
+                var response = await GetResponseObject(cbResponse);
+                responseJson = response.ToString();
+                stopwatch.Stop();
+
+                var log = AuditLogFactory.CreateAuditLog(
+                    correlationId: guid,
+                    sourceSystem: "CentralBankAPI",
+                    targetSystem: "CoreBankAPI",
+                    endpoint: endPointUrl,
+                    requestPayload: requestJson,
+                    responsePayload: responseJson,
+                    statusCode: "200",
+                    requestType: MessageTypeMappings.RetrieveConsent,
+                    executionTimeMs: (int)stopwatch.ElapsedMilliseconds);
+
+                await _sendpoint.AuditLog!.Send(log);
+
+                return Ok(cbResponse);
+            }
+            else
+            {
+                cbResponseDto.cbGetConsentResponse = new CbGetConsentResponse();
+                cbResponseDto.Status = "FAILED";
+                await _sendpoint.GetConsentResponse!.Send(cbResponseDto);
+
+                return NotFound(new ErrorResponse { errorCode = "404", errorMessage = apiResult.Message ?? "FxQuote data not found." });
+            }
+
+        }
+        else
+        {
+            var cbResponseDto = new CbGetConsentResponseDto { CorrelationId = guid };
+            var cbResponse = ConsentGetResponseSample.GetSampleResponse(consentId);
             cbResponseDto.cbGetConsentResponse = cbResponse;
             cbResponseDto.Status = "Accepted";
 
@@ -350,14 +390,7 @@ public class ConsentManagementController : ControllerBase
 
             return Ok(cbResponse);
         }
-        else
-        {
-            cbResponseDto.cbGetConsentResponse = new CbGetConsentResponse();
-            cbResponseDto.Status = "FAILED";
-            await _sendpoint.GetConsentResponse!.Send(cbResponseDto);
 
-            return NotFound(new ErrorResponse { errorCode = "404", errorMessage = apiResult.Message ?? "FxQuote data not found." });
-        }
     }
 
     [HttpGet("/consents/{consentId}/audit")]
@@ -387,7 +420,7 @@ public class ConsentManagementController : ControllerBase
 
         await _sendpoint.GetConsentAuditRequest!.Send(cbRequestDto);
 
-      
+
 
         var cbResponseDto = new CbGetConsentAuditResponseDto { CorrelationId = guid };
 
@@ -430,7 +463,7 @@ public class ConsentManagementController : ControllerBase
 
     private CbGetConsentQueryParameters MapQueryParameterToCbGetConsentQueryParameter(long? updatedAt, string consentType, string status, int page, int pageSize, Guid correlationId)
        => new()
-       
+
        {
            UpdatedAt = updatedAt,
            ConsentType = consentType,
