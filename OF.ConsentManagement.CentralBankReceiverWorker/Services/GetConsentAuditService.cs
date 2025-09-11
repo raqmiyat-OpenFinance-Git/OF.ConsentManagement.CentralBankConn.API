@@ -25,7 +25,7 @@ public class GetConsentAuditService : IGetConsentAuditService
             parameters.Add("CorrelationId", correlationId, DbType.Guid);
 
             var dbResult = await _dbConnection.ExecuteScalarAsync<long?>(
-                "OF_GetConsentAuditId",
+                "OF_GetLfiConsentAuditId",
                 parameters,
                 commandTimeout: 1200,
                 commandType: CommandType.StoredProcedure,
@@ -94,7 +94,7 @@ public class GetConsentAuditService : IGetConsentAuditService
             logger.Info($"Calling Usp_UpdateConsentAudit with Transaction: Id={id}, Status={status}");
 
             await _dbConnection.ExecuteAsync(
-                "Usp_UpdateConsentAudit",
+                "Usp_UpdateLfiConsentAudit",
                 parameters,
                 commandType: CommandType.StoredProcedure,
                 commandTimeout: 1200,

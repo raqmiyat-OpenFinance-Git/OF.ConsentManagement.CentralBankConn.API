@@ -45,7 +45,7 @@ public class PostConsentService : IPostConsentService
             parameters.Add("correlationId", correlationId, DbType.Guid);
 
             var dbResult = await _dbConnection.ExecuteScalarAsync<long?>(
-                "OF_GetConsentRequestsId",
+                "OF_GetLfiConsentRequestsId",
                 parameters,
                 commandTimeout: 1200,
                 commandType: CommandType.StoredProcedure,
@@ -98,7 +98,7 @@ public class PostConsentService : IPostConsentService
             logger.Info($"Calling OF_UpdateConsentRequest with Transaction: Id={id}, Status={status}");
 
             await _dbConnection.ExecuteAsync(
-                "OF_UpdateConsentRequest",
+                "OF_UpdateLfiConsentRequest",
                 parameters,
                 commandType: CommandType.StoredProcedure,
                 commandTimeout: 1200,

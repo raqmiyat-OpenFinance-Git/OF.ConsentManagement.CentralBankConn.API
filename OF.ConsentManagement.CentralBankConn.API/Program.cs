@@ -28,6 +28,7 @@ public static class Program
             });
         });
 
+
         var configuration = builder.Configuration;
         var rabbitMqSettings = configuration.GetSection(nameof(RabbitMqSettings)).Get<RabbitMqSettings>();
 
@@ -178,6 +179,8 @@ public static class Program
     {
         services.AddTransient<IMasterRepository, MasterRepository>();
         services.AddTransient<IConsentManagementService, ConsentManagementService>();
+        services.AddTransient<IResourceLogService, ResourceLogService>();
+
 
     }
 
@@ -188,6 +191,8 @@ public static class Program
         services.AddSingleton<ExceptionMiddlewareLogger>();
         services.AddSingleton<SendPointInitialize>();
         services.AddHostedService<SendPointInitializerHostedService>();
+
+        services.AddScoped<ResourceLogApiLogger>();
     }
 
     public static IServiceCollection AddMassTransitWithRabbitMq(IServiceCollection services, RabbitMqSettings rabbitMqSettings)

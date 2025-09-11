@@ -23,7 +23,7 @@ public class PatchConsentService : IPatchConsentService
             parameters.Add("@ConsentId", consentId, DbType.String);
 
             var dbResult = await _dbConnection.ExecuteScalarAsync<long?>(
-                "OF_GetConsentRequestsIdByConsentId",
+                "OF_GetLfiConsentRequestsIdByConsentId",
                 parameters,
                 commandTimeout: 1200,
                 commandType: CommandType.StoredProcedure
@@ -51,7 +51,7 @@ public class PatchConsentService : IPatchConsentService
             logger.Info($"Calling OF_UpdateConsentRequestForPatch with Id={id}, QuoteStatus={consentStatus}");
 
             await _dbConnection.ExecuteAsync(
-                "OF_UpdateConsentRequestForPatch", 
+                "OF_UpdateLfiConsentRequestForPatch", 
                 parameters,
                 commandType: CommandType.StoredProcedure,
                 commandTimeout: 1200
@@ -96,7 +96,7 @@ public class PatchConsentService : IPatchConsentService
             logger.Info($"Calling OF_UpdateConsentResponsesForPatch with Id={id}");
 
             await _dbConnection.ExecuteAsync(
-                "OF_UpdateConsentResponsesForPatch",
+                "OF_UpdateLfiConsentResponsesForPatch",
                 parameters,
                 commandType: CommandType.StoredProcedure,
                 commandTimeout: 1200

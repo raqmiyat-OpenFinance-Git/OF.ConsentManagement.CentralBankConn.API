@@ -21,7 +21,7 @@ public class PostConsentDbContext : DbContext
         // ConsentRequest
         modelBuilder.Entity<ConsentRequest>(entity =>
         {
-            entity.ToTable("ConsentRequest");
+            entity.ToTable("LfiConsentRequest");
             entity.HasKey(e => e.ConsentRequestId);
 
         });

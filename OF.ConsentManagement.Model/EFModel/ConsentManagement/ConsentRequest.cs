@@ -1,7 +1,7 @@
 ﻿namespace OF.ConsentManagement.Model.EFModel;
 
 
-[Table("ConsentRequest")]
+[Table("LfiConsentRequest")]
 public class ConsentRequest
 {
     [Key]

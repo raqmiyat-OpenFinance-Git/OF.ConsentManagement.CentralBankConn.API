@@ -25,7 +25,7 @@ public class GetConsentService : IGetConsentService
             parameters.Add("CorrelationId", correlationId, DbType.Guid);
 
             var dbResult = await _dbConnection.ExecuteScalarAsync<long?>(
-                "OF_GetConsentStatusHistoryId",
+                "OF_GetLfiConsentStatusHistoryId",
                 parameters,
                 commandTimeout: 1200,
                 commandType: CommandType.StoredProcedure,
@@ -81,7 +81,7 @@ public class GetConsentService : IGetConsentService
             parameters.Add("@ConsentIds", tvp.AsTableValuedParameter("dbo.ConsentIdList"));
 
             var result = await _dbConnection.QueryAsync<ConsentIdentifier>(
-                "Usp_GetConsentRequestIds",
+                "Usp_GetLfiConsentRequestIds",
                 parameters,
                 commandType: CommandType.StoredProcedure);
 
@@ -140,7 +140,7 @@ public class GetConsentService : IGetConsentService
             logger.Info($"Calling OF_UpdatePaymentRequests with Transaction: Id={id}, Status={consentStatusHistory.StatusCode}");
 
             await _dbConnection.ExecuteAsync(
-                "Usp_UpdateConsentStatusHistory",
+                "Usp_UpdateLfiConsentStatusHistory",
                 parameters,
                 commandType: CommandType.StoredProcedure,
                 commandTimeout: 1200,

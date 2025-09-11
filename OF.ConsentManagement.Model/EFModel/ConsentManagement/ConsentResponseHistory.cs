@@ -1,7 +1,7 @@
 ﻿namespace OF.ConsentManagement.Model.EFModel;
 
 
-[Table("ConsentResponseHistory")]
+[Table("LfiConsentResponseHistory")]
 public class ConsentResponseHistory
 {
 
@@ -9,11 +9,11 @@ public class ConsentResponseHistory
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long ConsentResponseId { get; set; }
 
-    [ForeignKey("ConsentStatusHistory")]
+    [ForeignKey("LfiConsentStatusHistory")]
     public long? ConsentStatusHistoryId { get; set; }
     public virtual ConsentStatusHistory ConsentStatusHistory { get; set; }
 
-    [ForeignKey("ConsentRequest")]
+    [ForeignKey("LfiConsentRequest")]
     public long ConsentRequestId { get; set; }
     public virtual ConsentRequest ConsentRequest { get; set; }
 
