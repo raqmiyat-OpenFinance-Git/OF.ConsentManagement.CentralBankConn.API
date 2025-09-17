@@ -6,7 +6,7 @@ namespace OF.ConsentManagement.CentralBankReceiverWorker.Services;
 
 public class PostConsentService : IPostConsentService
 {
-    
+
     private readonly PostConsentDbContext _context;
     private readonly IDbConnection _dbConnection;
     public PostConsentService(PostConsentDbContext context, IDbConnection dbConnection)
@@ -92,8 +92,11 @@ public class PostConsentService : IPostConsentService
         try
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@Id", id, DbType.Int64);
+            parameters.Add("@ConsentRequestId", id, DbType.Int64);
             parameters.Add("@Status", status, DbType.String);
+            parameters.Add("@ModifiedBy", "", DbType.String);
+            parameters.Add("@CurrentStatus", "Authorized", DbType.String);
+            parameters.Add("@ReturnValue", dbType: DbType.Boolean, direction: ParameterDirection.Output);
 
             logger.Info($"Calling OF_UpdateConsentRequest with Transaction: Id={id}, Status={status}");
 
