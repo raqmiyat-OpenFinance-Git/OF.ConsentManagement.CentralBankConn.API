@@ -32,6 +32,30 @@ public class ConsentRequest
     public string BillingUserType { get; set; }
     public string BillingPurpose { get; set; }
 
+    public string TppId { get; set; }
+    public string TppName { get; set; }
+
+    public string DebtorAccountSchemeName { get; set; }
+    public string DebtorAccountIdentification { get; set; }
+    public string DebtorAccountName { get; set; }
+
+    public string CreditorAccountSchemeName { get; set; }
+    public string CreditorAccountIdentification { get; set; }
+    public string CreditorAccountName { get; set; }
+    public string CreditorAccountTradingName { get; set; }
+
+    public string CreditorPostalAddressFloorNumber { get; set; }
+    public string CreditorPostalAddressBuildingNumber { get; set; }
+    public string CreditorPostalAddressStreetName { get; set; }
+    public string CreditorPostalAddressSecondaryNumber { get; set; }
+    public string CreditorPostalAddressDistrict { get; set; }
+    public string CreditorPostalAddressPostalCode { get; set; }
+    public string CreditorPostalAddressPOBox { get; set; }
+    public string CreditorPostalAddressZipCode { get; set; }
+    public string CreditorPostalAddressCity { get; set; }
+    public string CreditorPostalAddressRegion { get; set; }
+    public string CreditorPostalAddressCountry { get; set; }
+
     public string WebhookUrl { get; set; }
     public bool WebhookIsActive { get; set; }
     public string WebhookSecret { get; set; }
