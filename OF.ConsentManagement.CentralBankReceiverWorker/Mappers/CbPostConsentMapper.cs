@@ -128,6 +128,7 @@ public static class CbPostConsentMapper
             AuthorizerType = firstAuthorization?.AuthorizerType,
             AuthorizationDate = firstAuthorization?.AuthorizationDate,
             AuthorizationStatus = firstAuthorization?.AuthorizationStatus,
+            PsuUserId = Guid.NewGuid().ToString(),
 
             TppClientId = data.Tpp?.ClientId,
             TppId = data.Tpp?.TppId,

@@ -130,7 +130,8 @@ public class ConsentManagementService : IConsentManagementService
 
             logger.Error(ex, $"CorrelationId: {request.CorrelationId!} || Exception: {ex.Message}");
         }
-        await _sendPointInitialize.CbsPostingRequest!.Send(posting);
+        //comment by divakar for identity server testing purposes 
+        //await _sendPointInitialize.CbsPostingRequest!.Send(posting);
 
         logger.Info(WirteCoreBankPostingLog(logger, posting));
         if (isSuccessful)
