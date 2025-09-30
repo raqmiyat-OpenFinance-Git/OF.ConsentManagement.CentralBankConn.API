@@ -34,7 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OF.ConsentManagement.CentralBankConn.API\OF.ConsentManagement.CentralBankConn.API.csproj" />
     <ProjectReference Include="..\OF.ConsentManagement.Common\OF.ConsentManagement.Common.csproj" />
     <ProjectReference Include="..\OF.ConsentManagement.Model\OF.ConsentManagement.Model.csproj" />
   </ItemGroup>
