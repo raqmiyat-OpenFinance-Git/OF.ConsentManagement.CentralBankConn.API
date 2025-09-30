@@ -16,7 +16,7 @@ public static class Program
         var builder = WebApplication.CreateBuilder(args);
 
         const string AllowSpecificOrigins = "OF.ConsentManagement.CentralBankReceiverWorker";
-
+        builder.Host.UseWindowsService();
         builder.Services.AddCors(options =>
         {
             options.AddPolicy(name: AllowSpecificOrigins, policy =>
