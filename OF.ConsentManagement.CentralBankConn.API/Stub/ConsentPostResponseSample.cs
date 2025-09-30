@@ -24,7 +24,7 @@ public static class ConsentPostResponseSample
                     Type = "urn:openfinanceuae:insurance-consent:v1",
                     Consent = new ConsentDetails
                     {
-                        BaseConsentId = "base-111",
+                        BaseConsentId = Guid.NewGuid().ToString(),
                         ExpirationDateTime = DateTime.UtcNow.AddDays(90),
                         TransactionFromDateTime = DateTime.UtcNow.AddMonths(-3),
                         TransactionToDateTime = DateTime.UtcNow,
@@ -37,7 +37,7 @@ public static class ConsentPostResponseSample
                             IdentifierType = "TradeLicense",
                             Identifier = "TL-123456"
                         },
-                        ConsentId = "consent-001",
+                        ConsentId = Guid.NewGuid().ToString(),
                         Permissions = new List<string> { "ReadAccountsBasic", "ReadTransactionsDetail" },
                         OpenFinanceBilling = new OpenFinanceBilling
                         {
@@ -64,7 +64,7 @@ public static class ConsentPostResponseSample
                 {
                     Data = new ConsentBodyData
                     {
-                        BaseConsentId = "base-111",
+                        BaseConsentId = Guid.NewGuid().ToString(),
                         ExpirationDateTime = DateTime.UtcNow.AddDays(90),
                         TransactionFromDateTime = DateTime.UtcNow.AddMonths(-3),
                         TransactionToDateTime = DateTime.UtcNow,
@@ -80,7 +80,7 @@ public static class ConsentPostResponseSample
                         Status = "Active",
                         RevokedBy = null,
                         CreationDateTime = DateTime.UtcNow,
-                        ConsentId = "consent-001",
+                        ConsentId = Guid.NewGuid().ToString(),
                         Permissions = new List<string> { "ReadAccountsBasic", "ReadTransactionsDetail" },
                         OpenFinanceBilling = new OpenFinanceBilling
                         {
@@ -120,7 +120,7 @@ public static class ConsentPostResponseSample
                 Tpp = new TppInfo
                 {
                     ClientId = "client-123",
-                    TppId = "tpp-789",
+                    TppId = Guid.NewGuid().ToString(),
                     TppName = "FinTech Aggregator",
                     SoftwareStatementId = "ssa-5555",
                     DirectoryRecord = "dir-987",
