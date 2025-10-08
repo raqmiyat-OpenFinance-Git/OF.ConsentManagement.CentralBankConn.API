@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Hosting;
 using OF.ConsentManagement.CentralBankReceiverWorker.Consumer;
 using OF.ConsentManagement.CentralBankReceiverWorker.IServices;
 using OF.ConsentManagement.Common.Custom;
@@ -27,6 +28,7 @@ public static class Program
 
         var configuration = builder.Configuration;
         var rabbitMqSettings = configuration.GetSection(nameof(RabbitMqSettings)).Get<RabbitMqSettings>();
+        var serviceParams = configuration.GetSection(nameof(ServiceParams)).Get<ServiceParams>();
 
         if (rabbitMqSettings == null)
             throw new InvalidOperationException("RabbitMqSettings section is missing in configuration.");
@@ -41,6 +43,7 @@ public static class Program
         RegisterTransientServices(builder.Services);
         RegisterSingletonServices(builder.Services);
         AddMassTransitWithRabbitMq(builder.Services, rabbitMqSettings);
+        builder.WebHost.UseUrls(serviceParams!.AvailablePort!);
 
         builder.Services.AddControllers();
         builder.Services.AddHealthChecks();

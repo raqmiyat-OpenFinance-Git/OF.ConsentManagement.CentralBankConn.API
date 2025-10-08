@@ -40,7 +40,7 @@ public static class CbPostConsentMapper
         consentRequest.OnBehalfOfIdentifierType = consent.OnBehalfOf?.IdentifierType;
         consentRequest.OnBehalfOfIdentifier = consent.OnBehalfOf?.Identifier;
 
-        consentRequest.Permission = consent.Permissions?.FirstOrDefault();
+        consentRequest.Permission = string.Join(",", consent!.Permissions!);
 
         consentRequest.BillingIsLargeCorporate = true;
         consentRequest.BillingUserType = consent.OpenFinanceBilling?.UserType;
