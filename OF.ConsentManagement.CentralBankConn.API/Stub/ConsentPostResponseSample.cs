@@ -17,7 +17,7 @@ public static class ConsentPostResponseSample
                 ConsentGroupId = "group-001",
                 RequestUrl = "https://bankapi.com/consents/resp-12345",
                 ConsentType = "AccountAccess",
-                Status = "Awaiting Authorization",
+                Status = "AwaitingAuthorization",
 
                 Request = new ConsentRequestDto
                 {
