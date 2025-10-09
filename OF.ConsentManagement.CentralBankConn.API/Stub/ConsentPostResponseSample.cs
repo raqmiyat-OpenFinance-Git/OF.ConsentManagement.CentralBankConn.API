@@ -21,7 +21,7 @@ public static class ConsentPostResponseSample
 
                 Request = new ConsentRequestDto
                 {
-                    Type = "urn:openfinanceuae:insurance-consent:v1",
+                    Type = "urn:openfinanceuae:accountaccess-consent:v1",
                     Consent = new ConsentDetails
                     {
                         BaseConsentId = Guid.NewGuid().ToString(),
@@ -121,14 +121,14 @@ public static class ConsentPostResponseSample
                 {
                     ClientId = "531D2B54-337C-4FBB-80C9-68E4919FA9E9",
                     TppId = "3C39CB9F-80A3-46F0-9292-5FC02DC37575",
-                    TppName = "FinTech Aggregator",
+                    TppName = "Globe Finance",
                     SoftwareStatementId = "ssa-5555",
                     DirectoryRecord = "dir-987",
                     OrgId = "org-456",
                     DecodedSsa = new DecodedSsa
                     {
                         Redirect_uris = new List<string> { "https://tpp.com/callback" },
-                        Client_name = "BlueWallet",
+                        Client_name = "Globe Finance",
                         Client_uri = "https://tpp.com",
                         Logo_uri = "https://tpp.com/logo.png",
                         Jwks_uri = "https://tpp.com/jwks.json",
