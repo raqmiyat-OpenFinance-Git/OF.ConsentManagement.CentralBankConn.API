@@ -13,7 +13,7 @@ public class ConsentLogger : BaseLogger
         }
         else
         {
-            Log = LogManager.GetLogger("CconsentLogger");
+            Log = LogManager.GetLogger("ConsentLogger");
         }
     }
 }

@@ -39,7 +39,7 @@ public class ConsentManagementService : IConsentManagementService
         {
             string jsonData = JsonConvert.SerializeObject(cbsRequest, Formatting.Indented);
 
-            logger.Debug($"CorrelationId: {cbsRequest.CorrelationId} || JsonRequestBody: {PciDssSecurity.MaskCardInDynamicJson(jsonData, logger)}");
+            logger.Info($"CorrelationId: {cbsRequest.CorrelationId} || JsonRequestBody: {PciDssSecurity.MaskCardInDynamicJson(jsonData, logger)}");
 
             var url = UrlHelper.CombineUrl(_coreBankApis.Value.BaseUrl!, _coreBankApis.Value.ConsentManagementUrl!.PostConsent!);
 
@@ -51,7 +51,7 @@ public class ConsentManagementService : IConsentManagementService
             var content = GetStringContent(jsonData, cbsRequest.CorrelationId.ToString(), logger);
 
             //_httpClient.Timeout = TimeSpan.FromSeconds(30); // or pull from config
-            logger.Debug($"CorrelationId: {cbsRequest.CorrelationId} || Calling CoreBank API URL: {url}");
+            logger.Info($"CorrelationId: {cbsRequest.CorrelationId} || Calling CoreBank API URL: {url}");
 
             var request = new HttpRequestMessage(HttpMethod.Post, url)
             {
@@ -68,7 +68,7 @@ public class ConsentManagementService : IConsentManagementService
                 throw new InvalidOperationException("CoreBank API returned empty response body.");
             }
 
-            logger.Debug($"CorrelationId: {cbsRequest.CorrelationId} || Receiving Response data: {PciDssSecurity.MaskCardInDynamicJson(apiResponseBody, logger)}");
+            logger.Info($"CorrelationId: {cbsRequest.CorrelationId} || Receiving Response data: {PciDssSecurity.MaskCardInDynamicJson(apiResponseBody, logger)}");
 
             if (apiResponse.IsSuccessStatusCode)
             {

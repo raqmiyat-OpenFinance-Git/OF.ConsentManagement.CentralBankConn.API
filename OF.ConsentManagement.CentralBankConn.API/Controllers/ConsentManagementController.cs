@@ -92,7 +92,7 @@ public class ConsentManagementController : ControllerBase
             var cbResponse = ConsentPostResponseSample.GetSampleResponse();
             cbResponseDto.cbPostConsentResponse = cbResponse;
             cbResponseDto.status = "PROCESSED";
-            await Task.Delay(8000);
+            await Task.Delay(5000);
             await _sendpoint.PostConsentResponse!.Send(cbResponseDto);
 
             var response = await GetResponseObject(cbResponse);
