@@ -95,7 +95,7 @@ public class PostConsentService : IPostConsentService
             parameters.Add("@ConsentRequestId", id, DbType.Int64);
             parameters.Add("@Status", status, DbType.String);
             parameters.Add("@ModifiedBy", "", DbType.String);
-            parameters.Add("@CurrentStatus", "Authorized", DbType.String);
+            parameters.Add("@CurrentStatus", "AwaitingAuthorization", DbType.String);
             parameters.Add("@ReturnValue", dbType: DbType.Boolean, direction: ParameterDirection.Output);
 
             logger.Info($"Calling OF_UpdateConsentRequest with Transaction: Id={id}, Status={status}");
