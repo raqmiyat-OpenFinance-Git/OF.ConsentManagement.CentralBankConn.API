@@ -1,9 +1,15 @@
-﻿namespace OF.ConsentManagement.Model.CentralBank.Consent.PostRequest;
+﻿
+
+using OF.ConsentManagement.Model.CentralBank.Consent.PostResponse;
+using System.Text.Json.Serialization;
+
+
+namespace OF.ConsentManagement.Model.CentralBank.Consent.PostRequest;
 
 public class CbPostConsentRequest
 {
     public string? Type { get; set; }
-    public Consent? Consent { get; set; }
+    public Consent? consent { get; set; }
     public PersonalIdentifiableInformation? PersonalIdentifiableInformation { get; set; }
     public Subscription? Subscription { get; set; }
 }
@@ -14,11 +20,11 @@ public class Consent
     public DateTime? ExpirationDateTime { get; set; }
     public DateTime? TransactionFromDateTime { get; set; }
     public DateTime? TransactionToDateTime { get; set; }
-    public List<string>? AccountType { get; set; }
-    public List<string>? AccountSubType { get; set; }
+    public List<AccountType>? accountType { get; set; }
+    public List<AccountSubType>? accountSubType { get; set; }
     public OnBehalfOf? OnBehalfOf { get; set; }
     public string? ConsentId { get; set; }
-    public List<string>? Permissions { get; set; }
+    public List<Permissions>? Permissions { get; set; }
     public OpenFinanceBilling? OpenFinanceBilling { get; set; }
 }
 
@@ -32,8 +38,8 @@ public class OnBehalfOf
 
 public class OpenFinanceBilling
 {
-    public string? UserType { get; set; }
-    public string? Purpose { get; set; }
+    public UserType UserType { get; set; }
+    public Purpose Purpose { get; set; }
 }
 
 public class Subscription
@@ -59,7 +65,7 @@ public class CreditorDetails
 
 public class CreditorAccount
 {
-    public string? SchemeName { get; set; }
+    public CreditorAccountSchemeName? SchemeName { get; set; }
     public string? Identification { get; set; }
     public string? Name { get; set; }
     public string? TradingName { get; set; }
@@ -72,7 +78,7 @@ public class Creditor
 
 public class CreditorAgent
 {
-    public string? SchemeName { get; set; }
+    public CreditorAgentSchemeName? SchemeName { get; set; }
     public string? Identification { get; set; }
     public string? Name { get; set; }
     public List<PostalAddress>? PostalAddress { get; set; }
@@ -80,7 +86,7 @@ public class CreditorAgent
 
 public class DebtorAccount
 {
-    public string? SchemeName { get; set; }
+    public DebtorAccounSchemeName? SchemeName { get; set; }
     public string? Identification { get; set; }
     public string? Name { get; set; }
 }
@@ -113,4 +119,55 @@ public class PostalAddress
     public string? Country { get; set; }
 }
 
+public enum Permissions
+{
+    ReadAccountsBasic,
+    ReadAccountsDetail,
+    ReadBalances,
+    ReadBeneficiariesBasic,
+    ReadBeneficiariesDetail,
+    ReadFXTransactionsBasic,
+    ReadFXTransactionsDetail,
+    ReadTransactionsBasic,
+    ReadTransactionsDetail,
+    ReadProduct,
+    ReadScheduledPaymentsBasic,
+    ReadScheduledPaymentsDetail,
+    ReadDirectDebits,
+    ReadStandingOrdersBasic,
+    ReadStandingOrdersDetail,
+    ReadConsents,
+    ReadPartyUser,
+    ReadPartyUserIdentity,
+    ReadParty
+}
 
+public enum DebtorAccounSchemeName
+{
+    IBAN
+}
+
+public enum CreditorAgentSchemeName
+{
+    BICFI, Other
+}
+public enum CreditorAccountSchemeName
+{
+    IBAN, AccountNumber
+}
+
+public enum AccountType
+{
+    Retail,
+    SME,
+    Corporate
+}
+
+public enum AccountSubType
+{
+    CurrentAccount,
+    Savings,
+    CreditCard,
+    Mortgage,
+    PersonalLoan
+}

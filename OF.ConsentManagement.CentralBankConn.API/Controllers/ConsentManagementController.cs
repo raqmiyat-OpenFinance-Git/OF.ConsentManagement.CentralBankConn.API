@@ -75,8 +75,8 @@ public class ConsentManagementController : ControllerBase
 
         var cbsRequest = new CbsPostConsentRequest
         {
-            PaymentId = cbRequest.Consent!.ConsentId,
-            ConsentId = cbRequest.Consent.ConsentId,
+            PaymentId = cbRequest.consent!.ConsentId,
+            ConsentId = cbRequest.consent.ConsentId,
             CorrelationId = guid,
         };
 

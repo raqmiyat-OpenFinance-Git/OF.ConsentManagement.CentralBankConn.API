@@ -7,6 +7,7 @@ using OF.ConsentManagement.CentralBankConn.API.Services;
 using OF.ConsentManagement.Common.Custom;
 using OF.ConsentManagement.Common.NLog;
 using OF.ConsentManagement.Model.Common;
+using System.Text.Json.Serialization;
 
 namespace OF.ConsentManagement.CentralBankConn.API;
 
@@ -17,6 +18,13 @@ public static class Program
     public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(
+            new JsonStringEnumConverter()
+        );
+    });
 
         const string AllowSpecificOrigins = "OF.ConsentManagement.CentralBankConn.API";
 
@@ -59,7 +67,8 @@ public static class Program
             });
         }
         builder.Services.AddHttpContextAccessor();
-        builder.Services.AddControllers();
+        builder.Services.AddAuthentication();
+        builder.Services.AddAuthorization();
         builder.Services.AddHealthChecks();
         builder.Services.AddEndpointsApiExplorer();
         //builder.Services.AddSwaggerGen();
@@ -77,6 +86,8 @@ public static class Program
         app.UseSwaggerUI();
         app.UseHttpsRedirection();
         app.UseAuthorization();
+        app.UseAuthentication();   // MUST come first
+
         app.MapControllers();
         app.MapHealthChecks("/health", new HealthCheckOptions
         {

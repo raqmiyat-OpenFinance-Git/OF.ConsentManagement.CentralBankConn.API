@@ -43,8 +43,8 @@ public class CbPostConsentResponseConsumer : IConsumer<CbPostConsentResponseDto>
         try
         {
             var consentResponse = CbPostConsentMapper.MapCbPostConsentResponseToEF(responseWrapper);
-            long consentRequestId = await _consentService.GetConsentRequestIdAsync(responseWrapper.CorrelationId, _logger.Log);
             await Task.Delay(5000);
+            long consentRequestId = await _consentService.GetConsentRequestIdAsync(responseWrapper.CorrelationId, _logger.Log);
             await _consentService.SaveConsentResponseAsync(consentRequestId, responseWrapper.CorrelationId, consentResponse, _logger.Log);
             await _consentService.UpdateConsentRequestStatusAsync(consentRequestId, responseWrapper.status, responseWrapper.CorrelationId, _logger.Log);
             _logger.Info($"CbPostConsentResponseConsumer: ConsentResponse inserted - CorrelationId: {responseWrapper.CorrelationId}");

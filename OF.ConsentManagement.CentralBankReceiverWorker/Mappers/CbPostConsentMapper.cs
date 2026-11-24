@@ -1,8 +1,6 @@
 ﻿using OF.ConsentManagement.Model.CentralBank.Consent.PostRequestDto;
 using OF.ConsentManagement.Model.CentralBank.Consent.PostResponseDto;
-using OF.ConsentManagement.Model.CentralBank.ConsentManagement;
 using OF.ConsentManagement.Model.EFModel;
-using System.Net;
 
 namespace CentralBankReceiverWorker.Mappers;
 public static class CbPostConsentMapper
@@ -12,15 +10,15 @@ public static class CbPostConsentMapper
         if (requestDto == null)
             throw new ArgumentNullException(nameof(requestDto));
 
-        if (requestDto.cbPostConsentRequest?.Consent == null)
-            throw new ArgumentNullException(nameof(requestDto.cbPostConsentRequest.Consent));
+        if (requestDto.cbPostConsentRequest?.consent == null)
+            throw new ArgumentNullException(nameof(requestDto.cbPostConsentRequest.consent));
 
         if (requestDto.cbPostConsentRequest?.PersonalIdentifiableInformation == null)
             throw new ArgumentNullException(nameof(requestDto.cbPostConsentRequest.PersonalIdentifiableInformation));
 
 
         var request = requestDto.cbPostConsentRequest;
-        var consent = request.Consent;
+        var consent = request.consent;
         var pII = request.PersonalIdentifiableInformation;
         ConsentRequest consentRequest = new ConsentRequest();
 
@@ -31,9 +29,10 @@ public static class CbPostConsentMapper
         consentRequest.ExpirationDateTime = consent.ExpirationDateTime;
         consentRequest.TransactionFromDateTime = consent.TransactionFromDateTime;
         consentRequest.TransactionToDateTime = consent.TransactionToDateTime;
-
-        consentRequest.AccountType = consent.AccountType?.FirstOrDefault();
-        consentRequest.AccountSubType = consent.AccountSubType?.FirstOrDefault();
+        var firstAccountType = consent.accountType?.FirstOrDefault();
+        var accountSubType = consent.accountSubType?.FirstOrDefault();
+        consentRequest.AccountType = firstAccountType.ToString();
+        consentRequest.AccountSubType = accountSubType.ToString();
 
         consentRequest.OnBehalfOfTradingName = consent.OnBehalfOf?.TradingName;
         consentRequest.OnBehalfOfLegalName = consent.OnBehalfOf?.LegalName;
@@ -43,19 +42,19 @@ public static class CbPostConsentMapper
         consentRequest.Permission = string.Join(",", consent!.Permissions!);
 
         consentRequest.BillingIsLargeCorporate = true;
-        consentRequest.BillingUserType = consent.OpenFinanceBilling?.UserType;
-        consentRequest.BillingPurpose = consent.OpenFinanceBilling?.Purpose;
+        consentRequest.BillingUserType = consent.OpenFinanceBilling?.UserType.ToString()!;
+        consentRequest.BillingPurpose = consent.OpenFinanceBilling?.Purpose.ToString()!;
 
         consentRequest.TppId = pII.Initiation.TppId;
         consentRequest.TppName = pII.Initiation.TppName;
 
-        consentRequest.DebtorAccountSchemeName = pII.Initiation.DebtorAccount.SchemeName;
+        consentRequest.DebtorAccountSchemeName = pII.Initiation.DebtorAccount.SchemeName.ToString();
         consentRequest.DebtorAccountIdentification = pII.Initiation.DebtorAccount.Identification;
         consentRequest.DebtorAccountName = pII.Initiation.DebtorAccount.Name;
 
         foreach (var creditor in pII.Initiation.Creditor)
         {
-            consentRequest.CreditorAccountSchemeName = creditor.CreditorAccount.SchemeName;
+            consentRequest.CreditorAccountSchemeName = creditor.CreditorAccount.SchemeName.ToString();
             consentRequest.CreditorAccountIdentification = creditor.CreditorAccount.Identification;
             consentRequest.CreditorAccountName = creditor.CreditorAccount.Name;
             consentRequest.CreditorAccountTradingName = creditor.CreditorAccount.TradingName;
@@ -82,7 +81,7 @@ public static class CbPostConsentMapper
 
         // System / tracking fields
         consentRequest.CreatedBy = "System";
-        consentRequest.CreatedOn = DateTime.UtcNow;
+        consentRequest.CreatedOn = DateTime.Now;
         consentRequest.Status = "PENDING";
 
         // Serialize full request for traceability
@@ -120,7 +119,7 @@ public static class CbPostConsentMapper
             ConsentGroupId = data.ConsentGroupId,
             RequestUrl = data.RequestUrl,
             ConsentType = data.ConsentType,
-            ResponseStatus = data.Status,
+            ResponseStatus = data.Status.ToString(),
             InteractionId = data.InteractionId,
             ConsentStatus = data.ConsentBody?.Data?.Status,
             RevokedBy = null, // 👈 double-check business meaning, placeholder for now
@@ -148,7 +147,7 @@ public static class CbPostConsentMapper
             DecodedSsaOrganisationId = data.Tpp?.DecodedSsa?.Organisation_id,
 
             ResponsePayload = JsonConvert.SerializeObject(response, Formatting.None),
-            CreatedOn = DateTime.UtcNow,
+            CreatedOn = DateTime.Now,
             CreatedBy = "ConsentManagement Backend Worker"
         };
 

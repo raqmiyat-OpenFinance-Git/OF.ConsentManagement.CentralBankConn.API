@@ -1,4 +1,6 @@
-﻿namespace OF.ConsentManagement.Model.CentralBank.Consent.PostResponse;
+﻿using OF.ConsentManagement.Model.CentralBank.Consent.PostRequest;
+
+namespace OF.ConsentManagement.Model.CentralBank.Consent.PostResponse;
 
 public class CbPostConsentResponse
 {
@@ -15,7 +17,7 @@ public class ConsentResponseData
     public string ConsentGroupId { get; set; }
     public string RequestUrl { get; set; }
     public string ConsentType { get; set; }
-    public string Status { get; set; }
+    public Status Status { get; set; }
 
     public ConsentRequestDto Request { get; set; }
     public Dictionary<string, string> RequestHeaders { get; set; }
@@ -41,8 +43,8 @@ public class ConsentDetails
     public DateTime ExpirationDateTime { get; set; }
     public DateTime TransactionFromDateTime { get; set; }
     public DateTime TransactionToDateTime { get; set; }
-    public List<string> AccountType { get; set; }
-    public List<string> AccountSubType { get; set; }
+    public AccountType AccountType { get; set; }
+    public AccountSubType AccountSubType { get; set; }
     public OnBehalfOf OnBehalfOf { get; set; }
     public string ConsentId { get; set; }
     public List<string> Permissions { get; set; }
@@ -60,8 +62,8 @@ public class OnBehalfOf
 public class OpenFinanceBilling
 {
     public bool? IsLargeCorporate { get; set; }  // appears in ConsentBody only
-    public string UserType { get; set; }
-    public string Purpose { get; set; }
+    public UserType UserType { get; set; }
+    public Purpose Purpose { get; set; }
 }
 
 public class Subscription
@@ -90,8 +92,8 @@ public class ConsentBodyData
     public DateTime ExpirationDateTime { get; set; }
     public DateTime TransactionFromDateTime { get; set; }
     public DateTime TransactionToDateTime { get; set; }
-    public List<string> AccountType { get; set; }
-    public List<string> AccountSubType { get; set; }
+    public AccountType AccountType { get; set; }
+    public AccountSubType AccountSubType { get; set; }
     public OnBehalfOf OnBehalfOf { get; set; }
     public string Status { get; set; }
     public string RevokedBy { get; set; }
@@ -147,3 +149,25 @@ public class DecodedSsa
     public string Organisation_id { get; set; }
 }
 #endregion
+
+public enum Status
+{
+    AwaitingAuthorization, Authorized, Rejected, Revoked, Expired, Consumed, Suspended
+}
+
+public enum Purpose
+{
+    AccountAggregation,
+    RiskAssessment,
+    TaxFiling,
+    Onboarding,
+    Verification,
+    QuoteComparison,
+    BudgetingAnalysis,
+    FinancialAdvice,
+    AuditReconciliation
+}
+public enum UserType
+{
+    Retail, SME, Corporate
+}

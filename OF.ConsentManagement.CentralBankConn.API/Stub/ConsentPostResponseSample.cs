@@ -17,7 +17,7 @@ public static class ConsentPostResponseSample
                 ConsentGroupId = "group-001",
                 RequestUrl = "https://bankapi.com/consents/resp-12345",
                 ConsentType = "AccountAccess",
-                Status = "AwaitingAuthorization",
+                Status = Status.AwaitingAuthorization,
 
                 Request = new ConsentRequestDto
                 {
@@ -28,8 +28,8 @@ public static class ConsentPostResponseSample
                         ExpirationDateTime = DateTime.UtcNow.AddDays(90),
                         TransactionFromDateTime = DateTime.UtcNow.AddMonths(-3),
                         TransactionToDateTime = DateTime.UtcNow,
-                        AccountType = new List<string> { "Retail" },
-                        AccountSubType = new List<string> { "CurrentAccount" },
+                        AccountType = (ConsentManagement.Model.CentralBank.Consent.PostRequest.AccountType)AccountType.Retail,
+                        AccountSubType = (ConsentManagement.Model.CentralBank.Consent.PostRequest.AccountSubType)AccountSubType.CurrentAccount,
                         OnBehalfOf = new OnBehalfOf
                         {
                             TradingName = "ABC Brokers",
@@ -41,8 +41,8 @@ public static class ConsentPostResponseSample
                         Permissions = new List<string> { "ReadAccountsBasic", "ReadTransactionsDetail" },
                         OpenFinanceBilling = new OpenFinanceBilling
                         {
-                            UserType = "Retail",
-                            Purpose = "AccountAggregation"
+                            UserType =UserType.Retail,
+                            Purpose = ConsentManagement.Model.CentralBank.Consent.PostResponse.Purpose.AuditReconciliation
                         }
                     },
                     Subscription = new Subscription
@@ -68,8 +68,8 @@ public static class ConsentPostResponseSample
                         ExpirationDateTime = DateTime.UtcNow.AddDays(90),
                         TransactionFromDateTime = DateTime.UtcNow.AddMonths(-3),
                         TransactionToDateTime = DateTime.UtcNow,
-                        AccountType = new List<string> { "Retail" },
-                        AccountSubType = new List<string> { "CurrentAccount" },
+                        AccountType = (ConsentManagement.Model.CentralBank.Consent.PostRequest.AccountType)AccountType.Retail,
+                        AccountSubType = (ConsentManagement.Model.CentralBank.Consent.PostRequest.AccountSubType)AccountSubType.CurrentAccount,
                         OnBehalfOf = new OnBehalfOf
                         {
                             TradingName = "ABC Brokers",
@@ -85,8 +85,8 @@ public static class ConsentPostResponseSample
                         OpenFinanceBilling = new OpenFinanceBilling
                         {
                             IsLargeCorporate = false,
-                            UserType = "Retail",
-                            Purpose = "AccountAggregation"
+                            UserType = UserType.Retail,
+                            Purpose = ConsentManagement.Model.CentralBank.Consent.PostResponse.Purpose.AuditReconciliation
                         }
                     },
                     Meta = new ConsentMeta
